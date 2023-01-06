@@ -15,7 +15,7 @@ app.get("/", function (req, res) {
 
 async function Locations(lat, lng) {
   const resp = await fetch(
-    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat}%2C${lng}&radius=300&type=bar&key=${apiKey}`
+    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat}%2C${lng}&radius=300&keyword=bar&rankby=prominence&key=${apiKey}`
   );
   const data = await resp.json();
   console.log(data);

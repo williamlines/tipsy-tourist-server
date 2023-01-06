@@ -31,6 +31,24 @@ app.post("/places", async function (req, res) {
   res.send(data);
 });
 
+async function Attractions(lat, lng) {
+  const resp = await fetch(
+    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat}%2C${lng}&radius=3000&type=tourist_attraction&key=${apiKey}`
+  );
+  const data = await resp.json();
+  console.log(data);
+  return data;
+}
+
+app.post("/attractions", async function (req, res) {
+  //res.send("testing");
+  console.log(req.body);
+  const lat = req.body.lat;
+  const lng = req.body.lng;
+  const data = await Attractions(lat, lng);
+  res.send(data);
+});
+
 app.listen(PORT, function (err) {
   if (err) console.log(err);
   console.log("Server listening on PORT", PORT);

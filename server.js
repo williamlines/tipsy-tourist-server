@@ -49,7 +49,27 @@ app.post("/attractions", async function (req, res) {
   res.send(data);
 });
 
+async function PlaceDetails(place_id) {
+  const resp = await fetch(
+    `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&key=${apiKey}`
+  );
+  const data = await resp.json();
+  console.log(data);
+  return data;
+}
+
+app.post(`/place_details`, async function (req, res) {
+  //res.send("testing");
+  console.log(req.body);
+  const place_id = req.body.place_id
+  const detailedData = await PlaceDetails(place_id);
+  res.send(detailedData);
+});
+
+
 app.listen(PORT, function (err) {
   if (err) console.log(err);
   console.log("Server listening on PORT", PORT);
 });
+
+// PlaceDetails('ChIJJ7VUaS0bdkgRRxOOSvN_HaE')

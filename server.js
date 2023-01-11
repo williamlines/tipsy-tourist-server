@@ -13,6 +13,7 @@ app.get("/", function (req, res) {
   res.sendStatus(200);
 });
 
+// API request for bars neaby coordinates 
 async function Locations(lat, lng) {
   const resp = await fetch(
     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat}%2C${lng}&radius=300&keyword=bar&rankby=prominence&key=${apiKey}`
@@ -30,6 +31,7 @@ app.post("/places", async function (req, res) {
   res.send(data);
 });
 
+// API request for tourist attractions neaby coordinates 
 async function Attractions(lat, lng) {
   const resp = await fetch(
     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat}%2C${lng}&radius=3000&type=tourist_attraction&key=${apiKey}`
@@ -47,6 +49,7 @@ app.post("/attractions", async function (req, res) {
   res.send(data);
 });
 
+// API request for more details on a specific place 
 async function PlaceDetails(place_id) {
   const resp = await fetch(
     `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&key=${apiKey}`
@@ -69,4 +72,3 @@ app.listen(PORT, function (err) {
   if (err) console.log(err);
   console.log("Server listening on PORT", PORT);
 });
-

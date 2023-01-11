@@ -23,7 +23,6 @@ async function Locations(lat, lng) {
 }
 
 app.post("/places", async function (req, res) {
-  //res.send("testing");
   console.log(req.body);
   const lat = req.body.lat;
   const lng = req.body.lng;
@@ -41,7 +40,6 @@ async function Attractions(lat, lng) {
 }
 
 app.post("/attractions", async function (req, res) {
-  //res.send("testing");
   console.log(req.body);
   const lat = req.body.lat;
   const lng = req.body.lng;
@@ -72,4 +70,3 @@ app.listen(PORT, function (err) {
   console.log("Server listening on PORT", PORT);
 });
 
-// PlaceDetails('ChIJJ7VUaS0bdkgRRxOOSvN_HaE')
